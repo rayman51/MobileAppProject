@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    [SerializeField] float moveSpeed = 10f;
-    [SerializeField]float padding = 1f;
-
+    [SerializeField] float moveSpeed = 10f;// sets speed for player movement
+    [SerializeField] float padding = 1f;// sets padding for player movement
+    [SerializeField] GameObject laserPrefab;
+    [SerializeField] float projectileSpeed = 10f;
     float xMin;
     float xMax;
     float yMin;
@@ -17,23 +18,37 @@ public class Player : MonoBehaviour {
 
     }// Start ()
 
-    private void SetUpMoveBoundaries()
-    {
-        Camera gameCamera = Camera.main;
-        xMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + padding ;
-        xMax = gameCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - padding;
-
-        yMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + padding;
-        yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - padding;
-    }
-
+ 
     // Update is called once per frame
     void Update () {
         Move();
-
+        Fire();
 
 
     }// Update ()
+
+    private void Fire()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+           GameObject laser =  Instantiate(
+               laserPrefab,
+               transform.position, 
+               Quaternion.identity) as GameObject;
+
+            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+        }
+    }
+
+    private void SetUpMoveBoundaries()
+    {
+        Camera gameCamera = Camera.main;
+        xMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + padding;
+        xMax = gameCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - padding;
+        // stops player from leaving canvas
+        yMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + padding;
+        yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - padding;
+    }// SetUpMoveBoundaries()
 
     private void Move()
     {

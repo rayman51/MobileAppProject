@@ -62,8 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Player.cs" />
-    <None Include="Assets\Space Shooter Visual Assets\license.txt" />
-    <None Include="Assets\Space Shooter Visual Assets\Spritesheet\sheet.xml" />
+    <None Include="Assets\Z.kennyAssets\license.txt" />
+    <None Include="Assets\Z.kennyAssets\Spritesheet\sheet.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Ray/Desktop/MobileAppProject/War in Space/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
