@@ -4,26 +4,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+
     [SerializeField] float moveSpeed = 10f;// sets speed for player movement
     [SerializeField] float padding = 1f;// sets padding for player movement
     [SerializeField] GameObject laserPrefab;
-    [SerializeField] float projectileSpeed = 10f;
+    [SerializeField] float projectileSpeed = 10f;// sets speed for laser
+    [SerializeField] float projectileFiringPeriod = 0.1f;
+
+    Coroutine firingCoroutine;// allows continuous firing
+
     float xMin;
     float xMax;
-    float yMin;
+    float yMin;// variables for position of player
     float yMax;
+
     // Use this for initialization
     void Start () {
         SetUpMoveBoundaries();
-
+       
     }// Start ()
 
- 
     // Update is called once per frame
     void Update () {
         Move();
         Fire();
-
 
     }// Update ()
 
@@ -31,14 +35,28 @@ public class Player : MonoBehaviour {
     {
         if (Input.GetButtonDown("Fire1"))
         {
-           GameObject laser =  Instantiate(
-               laserPrefab,
-               transform.position, 
-               Quaternion.identity) as GameObject;
+            firingCoroutine = StartCoroutine(FireContinuously());       
+        }// if
+        if (Input.GetButtonUp("Fire1"))
+        {
+            StopCoroutine (firingCoroutine);
+        }
+    }// Fire()
+
+    IEnumerator FireContinuously()
+    {
+        while (true)
+        {
+            GameObject laser = Instantiate(
+                  laserPrefab,
+                  transform.position,
+                  Quaternion.identity) as GameObject;
 
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
-        }
-    }
+            yield return new WaitForSeconds(projectileFiringPeriod);
+        }// while
+
+    }// FireContinuously()
 
     private void SetUpMoveBoundaries()
     {
