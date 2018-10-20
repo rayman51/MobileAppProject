@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4185849429024096}
   - component: {fileID: 212059373080000726}
   - component: {fileID: 114664786035105162}
+  - component: {fileID: 114908259460436982}
+  - component: {fileID: 58589505502994352}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -35,12 +37,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1741959752438898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.05, y: 4.85, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.16, y: -3.112, z: 0}
+  m_LocalScale: {x: 1.2124155, y: 1.1851978, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58589505502994352
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1741959752438898}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.017516531, y: 0.041809827}
+  serializedVersion: 2
+  m_Radius: 0.34822285
 --- !u!114 &114664786035105162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,9 +69,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717cade063f662644b03b353589a9819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveConfig: {fileID: 11400000, guid: da46f1e9ac107e241ad996e7d2d7227a, type: 2}
-  waypoints: []
-  moveSpeed: 2
+--- !u!114 &114908259460436982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1741959752438898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d77653e7402a245950059a60f2825a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!212 &212059373080000726
 SpriteRenderer:
   m_ObjectHideFlags: 1
