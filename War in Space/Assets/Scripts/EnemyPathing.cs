@@ -13,20 +13,19 @@ public class EnemyPathing : MonoBehaviour {
     void Start () {
         waypoints = waveConfig.GetWaypoints();
         transform.position = waypoints[waypointIndex].transform.position;
-    }
-	
+    }// Start
+
     public void SetWaveConfig(WaveConfig waveConfig)
     {
         this.waveConfig = waveConfig;
 
-    }
+    }// SetWaveConfig
 
-
-
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
         Move();
-	}
+    }//Update
+
     private void Move()
     {
         if (waypointIndex <= waypoints.Count - 1)

@@ -17,8 +17,7 @@ public class EnemySpawner : MonoBehaviour {
         }
         while (looping);
 
-    }
-
+    }//  Start
 
     private IEnumerator SpawnAllWaves()
     {
@@ -26,10 +25,10 @@ public class EnemySpawner : MonoBehaviour {
         {
             var currentWave = waveConfigs[waveIndex];
             yield return StartCoroutine(SpawnAllEnemiesInWave(currentWave));
-        }
-    }
-	
-	private IEnumerator SpawnAllEnemiesInWave(WaveConfig waveConfig)
+        }// for
+    }// SpawnAllWaves
+
+    private IEnumerator SpawnAllEnemiesInWave(WaveConfig waveConfig)
     {
         for (int enemyCount  = 0; enemyCount < waveConfig.getNumberOfEnemies(); enemyCount++ )
         { 
