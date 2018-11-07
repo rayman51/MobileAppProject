@@ -83,9 +83,13 @@ MonoBehaviour:
   health: 100
   shotCounter: 0
   minTimeBetweenShots: 0.2
-  maxTimeBetweenShots: 3
+  maxTimeBetweenShots: 1
   projectile: {fileID: 1386573404541914, guid: 43d59495694988c49b817aba65dd65ec, type: 2}
   projectileSpeed: 10
+  deathVFX: {fileID: 1761165798509442, guid: 0a0bdb75963196d4eb8f4e406fc36138, type: 2}
+  durOfExplosion: 1
+  deathSound: {fileID: 8300000, guid: 69d6d547093623747828e985e137bf31, type: 3}
+  deathSoundVolume: 0.7
 --- !u!212 &212059373080000726
 SpriteRenderer:
   m_ObjectHideFlags: 1

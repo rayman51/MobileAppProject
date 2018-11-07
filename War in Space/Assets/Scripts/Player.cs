@@ -44,7 +44,7 @@ public class Player : MonoBehaviour {
     {
         health -= damageDealer.GetDamage();
         damageDealer.Hit();
-        if (health < 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
         }// if
