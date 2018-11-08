@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPathing : MonoBehaviour {
+public class EnemyPathing : MonoBehaviour
+{
 
     WaveConfig waveConfig;
     List<Transform> waypoints;
-    
+
 
     int waypointIndex = 0;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         waypoints = waveConfig.GetWaypoints();
         transform.position = waypoints[waypointIndex].transform.position;
     }// Start
@@ -22,7 +24,8 @@ public class EnemyPathing : MonoBehaviour {
     }// SetWaveConfig
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         Move();
     }//Update
 

@@ -3,15 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
     [Header("Player")]
-    [SerializeField] float moveSpeed = 10f;// sets speed for player movement
-    [SerializeField] float padding = 1f;// sets padding for player movement
-    [SerializeField] int health = 200;
+    [SerializeField]
+    float moveSpeed = 10f;// sets speed for player movement
+    [SerializeField]
+    float padding = 1f;// sets padding for player movement
+    [SerializeField]
+    int health = 200;
     [Header("Projectile")]
-    [SerializeField] GameObject laserPrefab;
-    [SerializeField] float projectileSpeed = 10f;// sets speed for laser
-    [SerializeField] float projectileFiringPeriod = 0.1f;
+    [SerializeField]
+    GameObject laserPrefab;
+    [SerializeField]
+    float projectileSpeed = 10f;// sets speed for laser
+    [SerializeField]
+    float projectileFiringPeriod = 0.1f;
+    [SerializeField]
+    [Range(0, 1)]
+    float deathSoundVolume = 0.7f;
+    [SerializeField]
+    AudioClip deathSound;
+    [SerializeField]
+    [Range(0, 1)]
+    float shootSoundVolume = 0.25f;
+    [SerializeField]
+    AudioClip shootSound;
 
     Coroutine firingCoroutine;// allows continuous firing
 
@@ -21,13 +38,15 @@ public class Player : MonoBehaviour {
     float yMax;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         SetUpMoveBoundaries();
-       
+
     }// Start ()
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         Move();
         Fire();
 
@@ -46,19 +65,25 @@ public class Player : MonoBehaviour {
         damageDealer.Hit();
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }// if
     }// ProcessHit
 
+    private void Die()
+    {
+        FindObjectOfType <Level>().LoadGameOver();
+        Destroy(gameObject);
+        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);
+    }
     private void Fire()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            firingCoroutine = StartCoroutine(FireContinuously());       
+            firingCoroutine = StartCoroutine(FireContinuously());
         }// if
         if (Input.GetButtonUp("Fire1"))
         {
-            StopCoroutine (firingCoroutine);
+            StopCoroutine(firingCoroutine);
         }// if
     }// Fire()
 
@@ -72,6 +97,7 @@ public class Player : MonoBehaviour {
                   Quaternion.identity) as GameObject;
 
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+            AudioSource.PlayClipAtPoint(shootSound, Camera.main.transform.position, shootSoundVolume);
             yield return new WaitForSeconds(projectileFiringPeriod);
         }// while
 

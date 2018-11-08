@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour {
+public class EnemySpawner : MonoBehaviour
+{
 
-    [SerializeField] List<WaveConfig> waveConfigs;
-    [SerializeField] int startingWave = 0;
-    [SerializeField] bool looping = false;
+    [SerializeField]
+    List<WaveConfig> waveConfigs;
+    [SerializeField]
+    int startingWave = 0;
+    [SerializeField]
+    bool looping = false;
 
     // Use this for initialization
-    IEnumerator Start () {
+    IEnumerator Start()
+    {
 
         do
         {
@@ -21,7 +26,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private IEnumerator SpawnAllWaves()
     {
-        for(int waveIndex = startingWave;  waveIndex < waveConfigs.Count; waveIndex++)
+        for (int waveIndex = startingWave; waveIndex < waveConfigs.Count; waveIndex++)
         {
             var currentWave = waveConfigs[waveIndex];
             yield return StartCoroutine(SpawnAllEnemiesInWave(currentWave));
@@ -30,8 +35,8 @@ public class EnemySpawner : MonoBehaviour {
 
     private IEnumerator SpawnAllEnemiesInWave(WaveConfig waveConfig)
     {
-        for (int enemyCount  = 0; enemyCount < waveConfig.getNumberOfEnemies(); enemyCount++ )
-        { 
+        for (int enemyCount = 0; enemyCount < waveConfig.getNumberOfEnemies(); enemyCount++)
+        {
             var newEnemy = Instantiate(
                 waveConfig.GetEnemyPrefab(),
                 waveConfig.GetWaypoints()[0].transform.position,

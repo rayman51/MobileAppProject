@@ -2,31 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
-    [SerializeField] float health = 100;
-    [SerializeField] float shotCounter;
-    [SerializeField] float minTimeBetweenShots = 0.2f;
-    [SerializeField] float maxTimeBetweenShots = 3f;
-    [SerializeField] GameObject projectile;
-    [SerializeField] float projectileSpeed = 10f;
-    [SerializeField] GameObject deathVFX;
-    [SerializeField] float durOfExplosion = 0.5f;
-    [SerializeField] AudioClip deathSound;
-    [SerializeField] [Range(0,1)]float deathSoundVolume = 0.7f;
+public class Enemy : MonoBehaviour
+{
+    [SerializeField]
+    float health = 100;
+    [SerializeField]
+    float shotCounter;
+    [SerializeField]
+    float minTimeBetweenShots = 0.2f;
+    [SerializeField]
+    float maxTimeBetweenShots = 3f;
+    [SerializeField]
+    GameObject projectile;
+    [SerializeField]
+    float projectileSpeed = 10f;
+    [SerializeField]
+    GameObject deathVFX;
+    [SerializeField]
+    float durOfExplosion = 0.5f;
+    [SerializeField]
+    AudioClip deathSound;
+    [SerializeField]
+    [Range(0, 1)]
+    float deathSoundVolume = 0.7f;
+    [SerializeField]
+    [Range(0, 1)]
+    float shootSoundVolume = 0.25f;
+    [SerializeField]
+    AudioClip shootSound;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
     }// Start
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         CountDownAndShoot();
     }//Update
 
     private void CountDownAndShoot()
     {
         shotCounter -= Time.deltaTime;
-        if(shotCounter <= 0f)
+        if (shotCounter <= 0f)
         {
             Fire();
             shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
@@ -41,6 +60,8 @@ public class Enemy : MonoBehaviour {
             Quaternion.identity
             ) as GameObject;
         laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -projectileSpeed);
+        AudioSource.PlayClipAtPoint(shootSound, Camera.main.transform.position, shootSoundVolume);
+
 
     }// Fire()
 
@@ -67,5 +88,5 @@ public class Enemy : MonoBehaviour {
         GameObject explosion = Instantiate(deathVFX, transform.position, transform.rotation);
         Destroy(explosion, durOfExplosion);
         AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);
-    }
+    }// Die
 }
