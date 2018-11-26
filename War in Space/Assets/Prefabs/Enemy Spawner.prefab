@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4024417212439058}
   - component: {fileID: 114861128531039864}
+  - component: {fileID: 50915197306375414}
   m_Layer: 0
   m_Name: Enemy Spawner
   m_TagString: Untagged
@@ -40,6 +41,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50915197306375414
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1275357119989736}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &114861128531039864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55,6 +76,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8047579520cdf34448addbab51cecaa6, type: 2}
   - {fileID: 11400000, guid: da46f1e9ac107e241ad996e7d2d7227a, type: 2}
   - {fileID: 11400000, guid: ee816bd874886dd4ca9676d4161ae2fa, type: 2}
-  - {fileID: 11400000, guid: 0ce3491d970c80e4eb18681c3c03f78d, type: 2}
+  - {fileID: 11400000, guid: 23f2a1c1ec24bff4f994e6cc3471ae4a, type: 2}
+  - {fileID: 11400000, guid: f73d3226e1221e048b377df0cfc86b16, type: 2}
   startingWave: 0
   looping: 1

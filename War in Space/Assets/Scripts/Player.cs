@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     float padding = 1f;// sets padding for player movement
     [SerializeField]
     int health = 200;
+
     [Header("Projectile")]
     [SerializeField]
     GameObject laserPrefab;
@@ -74,6 +75,11 @@ public class Player : MonoBehaviour
         FindObjectOfType <Level>().LoadGameOver();
         Destroy(gameObject);
         AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);
+    }
+
+    public int GetHealth()
+    {
+        return health;
     }
     private void Fire()
     {
