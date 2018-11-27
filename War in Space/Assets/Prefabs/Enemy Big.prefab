@@ -114,13 +114,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d77653e7402a245950059a60f2825a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
-  scoreValue: 200
+  health: 200
+  scoreValue: 300
   shotCounter: 0
   minTimeBetweenShots: 0.2
   maxTimeBetweenShots: 0.3
   projectile: {fileID: 1386573404541914, guid: 74fe5018147ecbf4683d8c0f17f4f053, type: 2}
-  projectileSpeed: 10
+  projectileSpeed: 5
   deathVFX: {fileID: 1761165798509442, guid: 0a0bdb75963196d4eb8f4e406fc36138, type: 2}
   durOfExplosion: 1
   deathSound: {fileID: 8300000, guid: 69d6d547093623747828e985e137bf31, type: 3}

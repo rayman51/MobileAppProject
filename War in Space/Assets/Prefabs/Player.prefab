@@ -100,7 +100,7 @@ MonoBehaviour:
   health: 500
   laserPrefab: {fileID: 1622332124012932, guid: ea0295409817458478f2bb7b0ed11f57,
     type: 2}
-  projectileSpeed: 20
+  projectileSpeed: 10
   projectileFiringPeriod: 0.05
   deathSoundVolume: 0.4
   deathSound: {fileID: 8300000, guid: e6340b5e1a42b3d4f972f3f18ca40235, type: 3}
