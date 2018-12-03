@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     float xMax;
     float yMin;// variables for position of player
     float yMax;
-
+    private Vector2 touchOrigin = -Vector2.one;
     // Use this for initialization
     void Start()
     {
@@ -66,15 +66,15 @@ public class Player : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
-            Die();
+            Die();// if health hits zero call Die method
         }// if
     }// ProcessHit
 
     private void Die()
     {
-        FindObjectOfType <Level>().LoadGameOver();
-        Destroy(gameObject);
-        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);
+        FindObjectOfType <Level>().LoadGameOver();// loads game over 
+        Destroy(gameObject);// destroys object 
+        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);// plays explosion sound
     }
 
     public int GetHealth()
@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
     }
     private void Fire()
     {
+
         if (Input.GetButtonDown("Fire1"))
         {
             firingCoroutine = StartCoroutine(FireContinuously());
@@ -123,10 +124,53 @@ public class Player : MonoBehaviour
     {
         var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
         var deltaY = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
-
+        // 
         var newXpos = Mathf.Clamp(transform.position.x + deltaX, xMin, xMax);
         var newYpos = Mathf.Clamp(transform.position.y + deltaY, yMin, yMax);
         transform.position = new Vector2(newXpos, newYpos);
+        //Check if we are running on iOS, Android, Windows Phone 8 or Unity iPhone
+        //elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
 
-    }// Move()
+        //Check if Input has registered more than zero touches
+        if (Input.touchCount > 0)
+        {
+            //Store the first touch detected.
+            Touch myTouch = Input.touches[0];
+
+            //Check if the phase of that touch equals Began
+            if (myTouch.phase == TouchPhase.Began)
+            {
+                //If so, set touchOrigin to the position of that touch
+                touchOrigin = myTouch.position;
+            }
+
+            //If the touch phase is not Began, and instead is equal to Ended and the x of touchOrigin is greater or equal to zero:
+            else if (myTouch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
+            {
+                //Set touchEnd to equal the position of this touch
+                Vector2 touchEnd = myTouch.position;
+
+                //Calculate the difference between the beginning and end of the touch on the x axis.
+                float x = touchEnd.x - touchOrigin.x;
+
+                //Calculate the difference between the beginning and end of the touch on the y axis.
+                float y = touchEnd.y - touchOrigin.y;
+
+                //Set touchOrigin.x to -1 so that our else if statement will evaluate false and not repeat immediately.
+                touchOrigin.x = -1;
+
+                //Check if the difference along the x axis is greater than the difference along the y axis.
+                if (Mathf.Abs(x) > Mathf.Abs(y))
+                    //If x is greater than zero, set deltaX to 1, otherwise set it to -1
+                    deltaX = x > 0 ? 1 : -1;
+                else
+                    //If y is greater than zero, set deltaY to 1, otherwise set it to -1
+                    deltaY = y > 0 ? 1 : -1;
+            }
+        }
+
+      
+      
+    
+}// Move()
 }
