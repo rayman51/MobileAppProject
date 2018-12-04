@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1684134173380188}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11, y: -6.96, z: 0}
+  m_LocalPosition: {x: -0.17, y: -6.46, z: 0}
   m_LocalScale: {x: 1.107, y: 1.0007129, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,6 +106,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: e6340b5e1a42b3d4f972f3f18ca40235, type: 3}
   shootSoundVolume: 0.5
   shootSound: {fileID: 8300000, guid: 390b3a968dbf60446ad8158dbc510286, type: 3}
+  joystick: {fileID: 0}
 --- !u!212 &212755381834754590
 SpriteRenderer:
   m_ObjectHideFlags: 1

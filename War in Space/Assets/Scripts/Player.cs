@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField]
-    float moveSpeed = 10f;// sets speed for player movement
+    float moveSpeed = 50f;// sets speed for player movement
     [SerializeField]
     float padding = 1f;// sets padding for player movement
     [SerializeField]
@@ -32,12 +32,12 @@ public class Player : MonoBehaviour
     AudioClip shootSound;
 
     Coroutine firingCoroutine;// allows continuous firing
-
+    public Joystick joystick;
     float xMin;
     float xMax;
     float yMin;// variables for position of player
     float yMax;
-    private Vector2 touchOrigin = -Vector2.one;
+    
     // Use this for initialization
     void Start()
     {
@@ -92,12 +92,7 @@ public class Player : MonoBehaviour
         {
             StopCoroutine(firingCoroutine);
         }// if
-         //Check if we are running on iOS, Android, Windows Phone 8 or Unity iPhone
-         //elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
-         /*if (Input.touchCount > 0)
-         {
-             firingCoroutine = StartCoroutine(FireContinuously());
-         }*/
+        
     }// Fire()
 
     IEnumerator FireContinuously()
@@ -128,8 +123,12 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
+        // keyboard controls
         var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
         var deltaY = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
+        // controls for virtual joystick
+        deltaX = joystick.Horizontal * Time.deltaTime * moveSpeed;
+        deltaY = joystick.Vertical * Time.deltaTime *  moveSpeed;
         // 
         var newXpos = Mathf.Clamp(transform.position.x + deltaX, xMin, xMax);
         var newYpos = Mathf.Clamp(transform.position.y + deltaY, yMin, yMax);
