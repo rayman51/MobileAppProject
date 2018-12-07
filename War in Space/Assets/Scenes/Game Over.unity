@@ -210,24 +210,14 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 223036645067389028, guid: 6b5ff6e38868c5644987039e5da45366,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1767972699}
     - target: {fileID: 1743933946815540, guid: 6b5ff6e38868c5644987039e5da45366, type: 2}
       propertyPath: m_Name
       value: Score Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 224036507951772728, guid: 6b5ff6e38868c5644987039e5da45366,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -540
-      objectReference: {fileID: 0}
-    - target: {fileID: 224036507951772728, guid: 6b5ff6e38868c5644987039e5da45366,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 495.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 114865126621098676, guid: 6b5ff6e38868c5644987039e5da45366,
-        type: 2}
-      propertyPath: m_Text
-      value: 0000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b5ff6e38868c5644987039e5da45366, type: 2}
@@ -1031,6 +1021,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c47c3d3d876bbbc4097911f16492bedb, type: 2}
   m_IsPrefabAsset: 0
+--- !u!20 &1767972699 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20207713974148518, guid: c47c3d3d876bbbc4097911f16492bedb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1767972698}
 --- !u!1001 &1822093900
 Prefab:
   m_ObjectHideFlags: 0
